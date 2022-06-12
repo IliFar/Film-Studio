@@ -9,8 +9,6 @@ namespace FilmStudioApiManagementApp.Models.AppUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
         public string Role { get; set; }
         public bool IsAdmin { get; set; }
     }

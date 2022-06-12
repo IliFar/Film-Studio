@@ -37,20 +37,22 @@ namespace FilmStudioApiManagementApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignUp([FromBody]AppUser appUser)
+        public async Task<IActionResult> SignUp([FromBody]UserRegister userRegister)
         {
-            var userExists = await userManager.FindByNameAsync(appUser.Id);
+
+            var user = new AppUser { UserName = userRegister.Email, Email = userRegister.Email };
+
+            var userExists = await userManager.FindByIdAsync(user.Id);
 
             if (userExists != null)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User Already Exists" });
             }
 
-            var addUserAction = userRepository.Create(appUser);
 
-            var mapAppUser = mapper.Map<UserRegister>(addUserAction);
+            var createUser = userRepository.Create(user);
 
-            var result = await userManager.CreateAsync(addUserAction, mapAppUser.Password);
+            var result = await userManager.CreateAsync(createUser, userRegister.Password);
 
             if (!result.Succeeded)
             {
@@ -61,39 +63,43 @@ namespace FilmStudioApiManagementApp.Controllers
             if(!await roleManager.RoleExistsAsync(UserRoles.Admin))
             {
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-                appUser.IsAdmin = true;
+                user.IsAdmin = true;
             }
 
-            await userManager.AddToRoleAsync(appUser, appUser.Role = UserRoles.Admin);
+            await userManager.AddToRoleAsync(user, user.Role = UserRoles.Admin);
 
-            var userToReturn = mapper.Map<UserService>(addUserAction);
+            var userToReturn = mapper.Map<UserService>(user);
             
 
             return Ok(userToReturn);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Authenticate([FromBody]AppUser appUser)
+        public async Task<IActionResult> Authenticate([FromBody]UserAuthenticate userAuthenticate)
         {
-            var userExists = await userManager.FindByNameAsync(appUser.Id);
+            var map = mapper.Map<AppUser>(userAuthenticate);
+
+            var userExists = await userManager.FindByIdAsync(map.Id);
 
             if (userExists != null)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User Already Logged in" });
             }
 
-            var userToAuth = userRepository.Authenticate(appUser.UserName, appUser.Password);
-            var mapUser = mapper.Map<UserAuthenticate>(userToAuth);
-            var result = await userManager.CheckPasswordAsync(userToAuth, mapUser.Password);
+            var userToAuth = userRepository.Authenticate(map.Email);
 
-            if(!result)
+            //var mapUser = mapper.Map<UserAuthenticate>(userToAuth);
+
+            var result = await signInManager.PasswordSignInAsync(userAuthenticate.Email, userAuthenticate.Password, false, false);
+
+            if(result == null)
             {
                 return BadRequest(new Response { Status = "FAILED", Message = "Invalid Password" });
             }
 
             var claims = new[]
             {
-                new Claim("Email", mapUser.Username),
+                new Claim("Email", userToAuth.Email),
                 new Claim(ClaimTypes.NameIdentifier, userToAuth.Id)
             };
 
@@ -108,9 +114,10 @@ namespace FilmStudioApiManagementApp.Controllers
 
             var tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
 
-            var userToReturn = mapper.Map<UserService>(mapUser);
+            var userToReturn = mapper.Map<AppUser>(userToAuth);
 
-            return Ok($"{userToReturn}{new Response { Message = tokenAsString, ExpireDate = token.ValidTo}}");
+            //return Ok($"{userToReturn}{new Response { Message = tokenAsString, ExpireDate = token.ValidTo}}");
+            return StatusCode(StatusCodes.Status200OK, new Response { Message = tokenAsString, ExpireDate = token.ValidTo, Status="Token Created" });
 
         }
     }

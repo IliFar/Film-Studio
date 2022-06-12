@@ -1,13 +1,14 @@
 ﻿using FilmStudioApiManagementApp.Models.Film;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
 namespace FilmStudioApiManagementApp.Models.FilmStudio
 {
-    public class FilmStudio : IFilmStudio
+    public class FilmStudio : IdentityUser
     {
-        public int FilmStudioId { get; set; }
-        public string Name { get; set; }
         public string City { get; set; }
+        public string Role { get; set; }
+        public bool isAdmin { get; set; }
         public List<FilmCopy> RentedFilmCopies { get; set; }
        
     }

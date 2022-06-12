@@ -5,7 +5,8 @@ namespace FilmStudioApiManagementApp.Models.FilmStudio.Repositories
     public interface IFilmStudioRepository
     {
         IEnumerable<FilmStudio> GetAllFilmStudios();
-        FilmStudio GetFilmStudioById(int id);
-        bool FilmStudioExists(int id);
+        FilmStudio GetFilmStudioById(string id);
+        bool FilmStudioExists(string id);
+        FilmStudio Create(FilmStudio filmStudio);
     }
 }

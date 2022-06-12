@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FilmStudioApiManagementApp.Models.AppUser;
 using FilmStudioApiManagementApp.Models.AppUser.Repositories;
+using FilmStudioApiManagementApp.Models.FilmStudio;
 using FilmStudioApiManagementApp.Models.FilmStudio.Repositories;
 using FilmStudioApiManagementApp.Services.AppUser;
 using FilmStudioApiManagementApp.Services.FilmStudio;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace FilmStudioApiManagementApp.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class FilmStudioController : ControllerBase
     {
@@ -58,7 +59,7 @@ namespace FilmStudioApiManagementApp.Controllers
             }
         }
         [HttpGet("{id:int}")]
-        public IActionResult GetFilmStudio(int id)
+        public IActionResult GetFilmStudio(string id)
         {
             try
             {
@@ -77,20 +78,23 @@ namespace FilmStudioApiManagementApp.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] AppUser appUser)
+        public async Task<IActionResult> Register([FromBody] RegisterFilmStudio registerFilmStudio)
         {
-            var userExists = await userManager.FindByNameAsync(appUser.Id);
+            var user = new FilmStudio { UserName = registerFilmStudio.Email, Email = registerFilmStudio.Email };
+
+            var userExists = await userManager.FindByIdAsync(user.Id);
 
             if (userExists != null)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User Already Exists" });
             }
 
-            var addUserAction = userRepository.Create(appUser);
 
-            var mapAppUser = mapper.Map<RegisterFilmStudio>(addUserAction);
+            var createUser = filmStudioRepository.Create(user);
 
-            var result = await userManager.CreateAsync(addUserAction, mapAppUser.Password);
+            var map = mapper.Map<AppUser>(createUser);
+
+            var result = await userManager.CreateAsync(map, registerFilmStudio.Password);
 
             if (!result.Succeeded)
             {
@@ -98,13 +102,43 @@ namespace FilmStudioApiManagementApp.Controllers
             }
 
             // User Role
-            await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+            
+            await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+            map.IsAdmin = false;
+            
 
-            await userManager.AddToRoleAsync(appUser, appUser.Role = UserRoles.User);
+            await userManager.AddToRoleAsync(map, user.Role = UserRoles.Admin);
 
-            var userToReturn = mapper.Map<FilmStudioService>(addUserAction);
+            var userToReturn = mapper.Map<FilmStudioService>(user);
+
 
             return Ok(userToReturn);
+            //var userExists = await userManager.FindByNameAsync(appUser.Id);
+
+            //if (userExists != null)
+            //{
+            //    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User Already Exists" });
+            //}
+
+            //var addUserAction = userRepository.Create(appUser);
+
+            //var mapAppUser = mapper.Map<RegisterFilmStudio>(addUserAction);
+
+            //var result = await userManager.CreateAsync(addUserAction, mapAppUser.Password);
+
+            //if (!result.Succeeded)
+            //{
+            //    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Failed", Message = "Failed to add user" });
+            //}
+
+            //// User Role
+            //await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+            //await userManager.AddToRoleAsync(appUser, appUser.Role = UserRoles.User);
+
+            //var userToReturn = mapper.Map<FilmStudioService>(addUserAction);
+
+            //return Ok(userToReturn);
         }
     }
 }

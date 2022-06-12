@@ -21,6 +21,7 @@ namespace FilmStudioApiManagementApp.Mapper
             CreateMap<AppUser, UserService>().ReverseMap();
             CreateMap<AppUser, UserAuthenticate>().ReverseMap();
             CreateMap<AppUser, RegisterFilmStudio>().ReverseMap();
+            CreateMap<AppUser, FilmStudio>().ReverseMap();
         }
     }
 }

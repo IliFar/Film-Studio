@@ -17,9 +17,9 @@ namespace FilmStudioApiManagementApp.Models.AppUser.Repositories
             this.dbContext = dbContext;
         }
 
-        public AppUser Authenticate(string username, string password)
+        public AppUser Authenticate(string username)
         {
-            var user = dbContext.AppUsers.Include(p => p.Password == password).FirstOrDefault(U => U.UserName == username);
+            var user = dbContext.AppUsers.FirstOrDefault(U => U.UserName == username);
 
             if (user == null) return null;
 
