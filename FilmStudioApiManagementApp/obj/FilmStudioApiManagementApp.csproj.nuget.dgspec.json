@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj": {}
+    "c:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj": {
+    "c:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj",
+        "projectUniqueName": "c:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj",
         "projectName": "FilmStudioApiManagementApp",
-        "projectPath": "C:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj",
+        "projectPath": "c:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj",
         "packagesPath": "C:\\Users\\ilias\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\obj\\",
+        "outputPath": "c:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ilias\\AppData\\Roaming\\NuGet\\NuGet.Config",

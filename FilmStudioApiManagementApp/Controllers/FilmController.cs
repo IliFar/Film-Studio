@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace FilmStudioApiManagementApp.Controllers
 {
-    
+
     [Route("api/films")]
     [ApiController]
     public class FilmController : ControllerBase
@@ -21,7 +21,7 @@ namespace FilmStudioApiManagementApp.Controllers
         private readonly IFilmCopyRepository filmCopyRepository;
         private readonly IMapper mapper;
 
-        public FilmController(IFilmRepository filmRepository,IFilmCopyRepository filmCopyRepository, IMapper mapper)
+        public FilmController(IFilmRepository filmRepository, IFilmCopyRepository filmCopyRepository, IMapper mapper)
         {
             this.filmRepository = filmRepository;
             this.filmCopyRepository = filmCopyRepository;
@@ -76,10 +76,12 @@ namespace FilmStudioApiManagementApp.Controllers
             {
                 var addFilmAction = filmRepository.AddMovie(film);
 
-                var filmToReturn = mapper.Map<CreateFilm>(addFilmAction);
+                var mapFilm = mapper.Map<CreateFilm>(addFilmAction);
+
+                var filmToReturn = mapper.Map<FilmService>(mapFilm);
 
                 return Ok(addFilmAction);
-                
+
             }
             catch (Exception)
             {
@@ -94,7 +96,7 @@ namespace FilmStudioApiManagementApp.Controllers
             try
             {
                 var result = filmRepository.Edit(film);
-                
+
                 return Ok(result);
 
             }
@@ -107,7 +109,7 @@ namespace FilmStudioApiManagementApp.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public IActionResult Rent([FromQuery]int studioId, int filmId, [FromBody]FilmStudio filmStudio)
+        public IActionResult Rent([FromQuery] int studioId, int filmId, [FromBody] FilmStudio filmStudio)
         {
             var film = filmRepository.GetFilmById(filmId);
 
