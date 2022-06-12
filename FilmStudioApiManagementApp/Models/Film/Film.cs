@@ -12,6 +12,7 @@ namespace FilmStudioApiManagementApp.Models.Film
         public DateTime ReleaseDate { get; set; }
         public string Country { get; set; }
         public string Director { get; set; }
-        public List<FilmCopy> FilmCopies { get; set; }
+        public List<FilmCopy> FilmCopies { get; set; } = new List<FilmCopy>();
+        public int NumberOfCopies { get; set; } = 0;
     }
 }

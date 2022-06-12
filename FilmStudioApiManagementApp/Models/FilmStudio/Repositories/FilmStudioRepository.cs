@@ -13,19 +13,26 @@ namespace FilmStudioApiManagementApp.Models.FilmStudio.Repositories
             this.dbContext = dbContext;
         }
 
-        public bool FilmStudioExists(int id)
+        public bool FilmStudioExists(string id)
         {
-            return dbContext.FilmStudios.Any(s => s.FilmStudioId == id);
+            return dbContext.FilmStudios.Any(s => s.Id == id);
         }
 
         public IEnumerable<FilmStudio> GetAllFilmStudios()
         {
-            return dbContext.FilmStudios.OrderBy(s => s.Name).ToList();
+            return dbContext.FilmStudios.OrderBy(s => s.UserName).ToList();
         }
 
-        public FilmStudio GetFilmStudioById(int id)
+        public FilmStudio GetFilmStudioById(string id)
         {
-            return dbContext.FilmStudios.FirstOrDefault(s => s.FilmStudioId == id);
+            return dbContext.FilmStudios.FirstOrDefault(s => s.Id == id);
         }
+
+        public FilmStudio Create(FilmStudio filmStudio)
+        {
+            dbContext.FilmStudios.Add(filmStudio);
+            return filmStudio;
+        }
+
     }
 }
