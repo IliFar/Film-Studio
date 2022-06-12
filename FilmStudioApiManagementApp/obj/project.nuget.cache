@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XpravEfdfdZ1pZshjMOGX4MxrdAzdlWq9y0XuHP7a6/+iQLzQEr3er1bj7leCmePHjjxTYmbJorF47rxq3K7aw==",
+  "dgSpecHash": "NEW5q/Rg3opAHWAG0e7vmdYKi/eq4p9i7DukybJxCe5h7zxQDFjrjn6bQ8fu4dEXNCnDJ5kLKYGo3zC2ck6K8A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj",
+  "projectFilePath": "c:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ilias\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\ilias\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
