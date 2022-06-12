@@ -27,5 +27,6 @@ namespace FilmStudioApiManagementApp.Models.FilmStudio.Repositories
         {
             return dbContext.FilmStudios.FirstOrDefault(s => s.FilmStudioId == id);
         }
+
     }
 }

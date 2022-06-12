@@ -4,6 +4,7 @@ using FilmStudioApiManagementApp.Models.FilmStudio;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace FilmStudioApiManagementApp.Data
 {
@@ -24,14 +25,7 @@ namespace FilmStudioApiManagementApp.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Film>().HasData(new Film
-            {
-                FilmId = 1,
-                Name = "The Revenant",
-                Country = "sweden",
-                Director = "Marcus",
-                FilmCopies = null
-            });
+            builder.Entity<Film>();
         }
     }
 }

@@ -16,6 +16,10 @@ namespace FilmStudioApiManagementApp.Models.Film.Repositories
 
         public Film AddMovie(Film film)
         {
+            foreach (var copy in film.FilmCopies)
+            {
+                dbContext.FilmCopies.Add(copy);
+            }
             dbContext.Films.Add(film);
             dbContext.SaveChanges();
             return film;
@@ -28,7 +32,7 @@ namespace FilmStudioApiManagementApp.Models.Film.Repositories
 
         public IEnumerable<Film> GetAllFilms()
         {
-            return dbContext.Films.OrderBy(f => f.Name).ToList();
+            return dbContext.Films.OrderBy(f => f.Name).Include(f => f.FilmCopies).ToList();
         }
 
         public Film GetFilmById(int filmId)
@@ -36,16 +40,13 @@ namespace FilmStudioApiManagementApp.Models.Film.Repositories
             return dbContext.Films.FirstOrDefault(f => f.FilmId == filmId);
         }
 
-        public int GetFilmCopies(int filmId)
+        public Film Edit(Film film)
         {
-            var filmCopy = dbContext.FilmCopies.Where(f => f.Film.FilmId == filmId);
-
-            if (filmCopy.Count() <= 0)
-            {
-                return 0;
-            }
-
-            return filmCopy.Count();
+            dbContext.Films.Update(film);
+            dbContext.SaveChanges();
+            return film;
         }
+
+        
     }
 }

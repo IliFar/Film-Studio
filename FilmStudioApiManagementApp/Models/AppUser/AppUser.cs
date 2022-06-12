@@ -7,15 +7,11 @@ namespace FilmStudioApiManagementApp.Models.AppUser
 {
     public class AppUser : IdentityUser
     {
-        [Required]
-        public int UserId { get; set; }
-        [Required]
-        public string UserName { get; set; }
-        [Required]
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Password { get; set; }
-        [Required]
+        public string ConfirmPassword { get; set; }
         public string Role { get; set; }
-        public bool isAdmin { get; set; }
-        public string Token { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

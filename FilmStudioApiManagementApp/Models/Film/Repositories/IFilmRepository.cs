@@ -8,6 +8,6 @@ namespace FilmStudioApiManagementApp.Models.Film.Repositories
         IEnumerable<Film> GetAllFilms();
         Film GetFilmById(int filmId);
         bool FilmExists(int filmId);
-        int GetFilmCopies(int filmId);
+        Film Edit(Film film);
     }
 }
