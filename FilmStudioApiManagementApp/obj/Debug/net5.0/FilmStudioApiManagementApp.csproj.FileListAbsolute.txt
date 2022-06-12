@@ -47,3 +47,4 @@ C:\Users\ilias\Desktop\Film-Studio\FilmStudioApiManagementApp\obj\Debug\net5.0\r
 C:\Users\ilias\Desktop\Film-Studio\FilmStudioApiManagementApp\obj\Debug\net5.0\FilmStudioApiManagementApp.pdb
 C:\Users\ilias\Desktop\Film-Studio\FilmStudioApiManagementApp\obj\Debug\net5.0\FilmStudioApiManagementApp.genruntimeconfig.cache
 C:\Users\ilias\Desktop\Film-Studio\FilmStudioApiManagementApp\obj\Debug\net5.0\ref\FilmStudioApiManagementApp.dll
+C:\Users\ilias\Desktop\Film-Studio\FilmStudioApiManagementApp\bin\Debug\net5.0\package.json

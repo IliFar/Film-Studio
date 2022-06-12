@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AC2EBse7KYr7UjaRmCwXD0JooIsPg+wBlm0ab2/DCsrtvvwcxLoBrzD1fLHeK6mAvtly/oFbRp8LIeoAN96PIQ==",
+  "dgSpecHash": "XpravEfdfdZ1pZshjMOGX4MxrdAzdlWq9y0XuHP7a6/+iQLzQEr3er1bj7leCmePHjjxTYmbJorF47rxq3K7aw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ilias\\Desktop\\Film-Studio\\FilmStudioApiManagementApp\\FilmStudioApiManagementApp.csproj",
   "expectedPackageFiles": [
@@ -58,6 +58,7 @@
     "C:\\Users\\ilias\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\ilias\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\ilias\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\ilias\\.nuget\\packages\\microsoft.typescript.msbuild\\4.7.3\\microsoft.typescript.msbuild.4.7.3.nupkg.sha512",
     "C:\\Users\\ilias\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\ilias\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\ilias\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
